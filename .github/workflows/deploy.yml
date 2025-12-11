@@ -4,11 +4,18 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: {} # allows you to run the workflow manually from the Actions UI
+  workflow_dispatch: {}
+
+# Grant Pages and token permissions needed to publish
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,8 +30,8 @@ jobs:
         run: npm ci
 
       - name: Build
-        # If you already set base in vite.config.ts this is redundant, but harmless.
-        run: npx vite build --base /roleweaver/
+        # Use your package script so config/base from vite.config.ts is used
+        run: npm run build
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
