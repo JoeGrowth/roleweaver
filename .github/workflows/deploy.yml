@@ -14,6 +14,7 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,6 +31,10 @@ jobs:
         run: npm install
 
       - name: Build
+ci/gh-pages-deploy
+        # Use your package script so config/base from vite.config.ts is used
+=======
+main
         run: npm run build
 
       - name: Deploy to gh-pages
