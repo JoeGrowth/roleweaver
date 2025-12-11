@@ -1,4 +1,4 @@
-```json
+json
 {
   "name": "vite_react_shadcn_ts",
   "private": true,
@@ -85,4 +85,3 @@
     "gh-pages": "^5.0.0"
   }
 }
-```
