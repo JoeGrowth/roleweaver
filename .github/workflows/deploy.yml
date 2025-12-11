@@ -6,7 +6,6 @@ on:
       - main
   workflow_dispatch: {}
 
-# Grant Pages and token permissions needed to publish
 permissions:
   contents: read
   pages: write
@@ -27,10 +26,15 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        # Use npm install (tolerant of lockfile mismatches). If you later commit an updated
+        # package-lock.json, consider switching back to `npm ci` for reproducible installs.
+        run: npm install
 
       - name: Build
+ci/gh-pages-deploy
         # Use your package script so config/base from vite.config.ts is used
+=======
+main
         run: npm run build
 
       - name: Deploy to gh-pages
